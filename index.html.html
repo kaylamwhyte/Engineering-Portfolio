@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kayla Whyte | Engineering Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f8fafc, #eef2f7);
+      color: #1e293b;
+      scroll-behavior: smooth;
+    }
+
+    .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
+
+    header {
+      position: relative;
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+      background-size: 45px 45px;
+      pointer-events: none;
+    }
+
+    .profile { 
+      display: flex; 
+      flex-wrap: wrap; 
+      align-items: center; 
+      gap: 40px; 
+      position: relative;
+      z-index: 1;
+    }
+
+    .profile img {
+      width: 220px;
+      height: 220px;
+      border-radius: 16px;
+      object-fit: cover;
+      background: #cbd5e1;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    h1 { font-size: 42px; font-weight: 700; margin-bottom: 10px; }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 30px;
+      border-left: 4px solid #0ea5e9;
+      padding-left: 12px;
+    }
+
+    h3 { margin-top: 25px; margin-bottom: 8px; font-weight: 600; color: #0369a1; }
+
+    p { line-height: 1.7; color: #334155; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 800px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: 0.4s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .card.visible { opacity: 1; transform: translateY(0); }
+    .card:hover { border: 1px solid #0ea5e9; }
+
+    button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background: #0ea5e9;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover { background: #0284c7; }
+
+    .card .project-details { display: none; }
+
+    .project-popup {
+      margin-top: 60px;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+      display: none;
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .project-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .project-images img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .project-images img:hover { transform: scale(1.03); }
+
+    footer { text-align: center; padding: 30px; font-size: 14px; color: #64748b; }
+
+    .fade-section { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+    .fade-section.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container profile fade-section">
+    <img src="Images/Me.jpg" alt="My photo">
+    <div>
+      <h1>Kayla Whyte</h1>
+      <p><strong>B.A.Sc in Biomedical Engineering | University of Waterloo</strong></p>
+      <p>
+        Hi, I am a hardworking first-year Biomedical Engineering student at the University of Waterloo. Motivated by answering the question, "but how does it work?", you'll find me engaged in topics from mechanics, to anatomy, to psychological puzzles! I have a particular passion for medical devices, prosthetics, and applying engineering concepts to solve real world heath problems.
+      </p>
+
+      <br>
+
+      <p><strong>Email:</strong> kaylamwhyte@gmail.com</p>
+      <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/kayla6whyte" target="_blank">www.linkedin.com/in/kayla6whyte</a></p>
+    </div>
+  </div>
+</header>
+
+<div class="container fade-section">
+  <h2>Projects</h2>
+
+  <div class="projects-grid">
+
+    <div class="card">
+      <h3>Arthritis-Friendly Game of Life Spinner</h3>
+      <p> An addition to the classic board game, The Game of Life, to ease the skill of turning the spinner for those who have fine motor impairment.</p>
+      <button onclick="openProject(this)">View Project</button>
+      <div class="project-details">
+        <h3>Problem Statement</h3><p>Little tasks, like playing a board game, are sometimes the hardest for those who face dexterity disabilities, like Arthritis. Pain and movement impairment in the hands can make it very difficult for some to execute the spinning motion with their fingers required to use the spinner in The Game of Life, preventing enjoyment and ease of play.
+</p>
+        <h3>Design Process</h3><p>Over the course of a term, I collaborated with four other students to iterate through the complete design process twice—moving from empathy and ideation to prototype creation and testing. <br /> <br />
+We began by analyzing our problem space using stakeholder maps, scenario stories, and assumption identification, alongside research into existing solutions for similar accessibility challenges. This research naturally flowed into constructing Needs and Requirements tables derived from identified stakeholder values. <br /> <br />
+
+To translate this information into concepts, we explored various solutions to improve accessibility, such as a game piece pusher, an enlarged car game piece, and magnetized spinner movement. These initial designs were developed into low-fidelity prototypes using simple materials like cardboard, tape, and springs. Using Best-of-Class (BOC) and SWOT analysis tools, the team decided to focus on simplifying the spinner mechanism, as we identified it as the most restrictive motion required by the game. <br /> <br />
+
+Entering the second iteration, we utilized Quality Function Deployment (QFD), Pairwise Tables, P-Diagrams, and Morph Charts to assess how different spinner modifications met specific requirements and constraints. We then developed a second, higher-fidelity prototype, inspired by the mechanics of a salad spinner, which was modeled in SolidWorks and 3D printed.
+During the engineering analysis, we applied Hooke’s Law to calculate the proper spring length and stiffness required. User testing was conducted using materials that simulated the physical restrictions of arthritis to assess "Assembly Time" and general ease of use. Meeting all performance expectations, we presented our design to the teaching team and stakeholders affected by arthritis. Further refinement is currently in progress.
+</p>
+       <h3>Demonstrated Skills</h3>
+<ul style="margin-left: 25px; line-height: 1.6;">
+  <li style="padding-bottom: 5px;">SolidWorks 3D Modeling</li>
+  <li style="padding-bottom: 5px;">Engineering Analysis & Calculations</li>
+  <li style="padding-bottom: 5px;">Variant-Level Prototyping</li>
+  <li style="padding-bottom: 5px;">Requirement and Constraint Analysis (BOC, QFD, P-Diagram, SWOT)</li>
+  <li style="padding-bottom: 5px;">Stakeholder Communication</li>
+  <li style="padding-bottom: 5px;">Large-Scope Project Management</li>
+  <li style="padding-bottom: 5px;">User Testing Processes</li>
+  <li style="padding-bottom: 5px;">Creation of a Design History File (DHF)</li>
+  <li style="padding-bottom: 5px;">Teamwork and Leadership</li>
+  <li style="padding-bottom: 5px;">Detailed Prototype Sketching</li>
+  <li style="padding-bottom: 5px;">Technical Report Writing</li>
+  <li style="padding-bottom: 5px;">Professional Presentation</li>
+</ul>
+
+<h3>Project Photos</h3>
+<div class="project-images" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
+
+<figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/Stakeholder Map.png" alt="Stakeholder Map" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Stakholder Map, accessing relevant tasks, tools, environments, and values.
+    </figcaption>
+  </figure>
+
+  <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/Initial Prototype Sketches.png" alt="Initial Prototype Sketches" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Initial ideation sketches outlining various accessible solutions to The Game of Life.
+    </figcaption>
+  </figure>
+
+  <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/Prototypes.png" alt="Initial Prototype Sketches" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      First low-fidelity prototyping with initial designs.
+    </figcaption>
+  </figure>
+
+  <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/Prototype Sketches.png" alt="Engineering Prototype Sketches" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Final ideation sketches outlining mechanical solutions for the Game of Life spinner addition.
+    </figcaption>
+  </figure>
+
+  <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/BOC table.png" alt="BOC table" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Best of Class Chart comparing spinner solution models to specific requirements.
+    </figcaption>
+  </figure>
+
+  <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/QFD.png" alt="QFD" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Quality Function Deployment Analysis.
+    </figcaption>
+  </figure>
+
+  <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/SolidWorks.png" alt="SolidWorks models" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      3D Modelling of high-fidelity prototype using Solidworks.
+    </figcaption>
+  </figure>
+
+  <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/Symposium.png" alt="Symposium Photo" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Design Solution Presented to the teaching team and related stakeholders during a Symposium.
+    </figcaption>
+  </figure>
+
+  <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/Summary Page.png" alt="Visual Abstract" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Visual Abstract Summarizing design process and solution.
+    </figcaption>
+  </figure>
+
+</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>StarWars Speeder Bike Replica</h3>
+      <p>Detailed 3D modeled Solidworks replica of the Speeder Bikes featured Star Wars episodes.</p>
+      <button onclick="openProject(this)">View Project</button>
+      <div class="project-details">
+        <h3>Design Process</h3><p>Designed as a project to challenge my Solidworks capabilities, this model is built using 10 different part files and built with numerous complex tools such as Loft, Mirror, Revolve, Spline, Chamfer, Fillet, and more. This was made completely from scratch by referencing only original orthographic sketches. Within Assembly, both handlebars and front fins are matted to be pivotable just as in reality.</p>
+        <h3>Demonstrated Skills</h3>
+<ul style="margin-left: 25px; line-height: 1.6;">
+  <li style="padding-bottom: 5px;">SolidWorks 3D Part and Assembly Modeling</li>
+  <li style="padding-bottom: 5px;">Orthographic reference view to 3D conceptualizing</li>
+  <li style="padding-bottom: 5px;">Exploaded view creation</li>
+  <li style="padding-bottom: 5px;">Bill of Materials construction</li>
+</ul>
+
+        <h3>Project Photos</h3>
+<div class="project-images" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
+
+<figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/Assembly.png" alt="Assembly Bike" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Assembly file of finished Speeder Bike on Solidworks
+    </figcaption>
+  </figure>
+
+ <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/Exploaded view.png" alt="Exploaded view of speeder bike" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Exploaded view and Bill of Materials of Speeder Bike
+    </figcaption>
+  </figure>
+
+  <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/Orthographics.png" alt="Orthographic view of speeder bike" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Orthographic view pictorials of Speeder Bike
+    </figcaption>
+  </figure>
+
+</div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Assistive Key Turner</h3>
+      <p>Custom-designed assistive device that enables easier key manipulation for a client with limited grip strength and mobility.</p>
+      <button onclick="openProject(this)">View Project</button>
+      <div class="project-details">
+        <h3>Problem Statement</h3><p>Patient with Hyperextension and Arthritis in their fingers experiences difficulty and pain gripping and inserting their key into the keyhole.</p>
+        <h3>Design Process</h3><p>Within the UW design team, Biomechatronics e-NABLE, my team of four picked up this personalized request by a client. Working with little direction from the client, we researched typical traits of the known disability and brainstormed aligning essential requirements within our design solution. We collaborated by conducting individual rapid iteration sessions, and coming back to formally consider each idea, combing the best of each if possible.<br /> <br />
+
+The client requested this device be adequate for multiple key types and sizes, being able to interchange keys as needed. This means in order to secure the key inside the device, the key could not be permanently attached, nor one size uniquely fitted for. The motion of forces applied on the key while using was experimented with. The current design incorporates a hinged encapsulation of the larger handled section of a key, with an extended handle to grip. The inside will feature a stiff but moldable interior to grip the key in place, and two strong latches are on either side to secure the encapsulation around the key. As the top of the key is fitted securely in place with the enlarged handle, the rest of the key sticks out of a slot that takes the measurements of a typical key size. <br /> <br />
+
+
+The device is modeled using SolidWorks, and will be printed for testing in the near future. When completed, the product will be personally shipped to the client for use.</p>
+        <h3>Demonstrated Skills</h3>
+<ul style="margin-left: 25px; line-height: 1.6;">
+  <li style="padding-bottom: 5px;">Stakeholder communication</li>
+  <li style="padding-bottom: 5px;">Teamwork and initative</li>
+  <li style="padding-bottom: 5px;">Solidworks Modelling</li>
+  <li style="padding-bottom: 5px;">Practical requriment building from stakeholder values</li>
+  <li style="padding-bottom: 5px;">Large task oversight management</li>
+</ul>
+
+        <h3>Project Photos</h3>
+<div class="project-images" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
+
+<figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/key2.png" alt="key2" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Assembly of Key Turner in Solidworks
+    </figcaption>
+  </figure>
+
+ <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/Key1.png" alt="Key1" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Assembly of Key Turner in Solidworks
+    </figcaption>
+  </figure>
+
+  <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/key3.png" alt="key3" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Assembly of Key Turner in Solidworks
+    </figcaption>
+  </figure>
+
+<figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/key brainstorm.png" alt="key brainstorm" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Early design concept brainstorming
+    </figcaption>
+  </figure>
+
+</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Canoe Crew</h3>
+      <p>Fun 3D-modeled Canadian puzzle project using Solidworks.</p>
+      <button onclick="openProject(this)">View Project</button>
+      <div class="project-details">
+
+        <h3>Design Process</h3><p>With the sole constraints of print time, incorporating a Canadian theme, and inclusion of at least one animal or plant, my team of five conceptualized, modeled, and printed (and re-printed!) this fun Canadian Puzzle. <br /> <br />
+It is composed of 16 individual parts that each fit in specific ways to compose the overall puzzle. Three animals, a bear, owl, and beaver, each have a differently shaped peg to fit in the hole of their respective seat. Four wheels are threaded through two axles that are secured by wave-shaped caps to create the effect that the canoe is gliding on water. Then, two paddles can be capped on either side of the canoe and rotated back and forth. <br /> <br />
+All design decisions were made with structural integrity and aesthetics in mind. Varying error tolerances were implicated depending on the type of fit and motion desired.  After the initial print, one of the caps snapped which required a reprint, and multiple pieces needed extensive sanding for proper fit. Being a group project, it was essential to communicate dimensions across group members and ensure design styles were coherent. My personal contributions came from organizing initial dimensions required, and modeling the owl and paddles.
+</p>
+        <h3>Demonstrated Skills</h3>
+<ul style="margin-left: 25px; line-height: 1.6;">
+  <li style="padding-bottom: 5px;">Team cross-communicaiton</li>
+  <li style="padding-bottom: 5px;">Solidworks modeling and Solidworks Composer creation</li>
+  <li style="padding-bottom: 5px;">3D Printer usage</li>
+  <li style="padding-bottom: 5px;">Iteration adaptment and adjustment</li>
+  </ul>
+
+        <h3>Project Photos</h3>
+<div class="project-images" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
+
+<figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/Assembled.png" alt="assembled" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Printed Final Canoe Crew project
+    </figcaption>
+  </figure>
+
+ <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/parts.png" alt="parts" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Printed Final Canoe Crew project
+    </figcaption>
+  </figure>
+
+  <figure style="margin: 0; padding-bottom: 20px;">
+    <img src="Images/manual.png" alt="manual" style="width:100%; height:auto; border-radius: 8px;">
+    <figcaption style="margin-top: 8px; font-style: italic; color: #555; font-size: 0.9em;">
+      Assembly manual using Solidworks Composer
+    </figcaption>
+  </figure>
+
+</div>
+
+    </div>
+</div>
+  </div>
+
+  <div id="projectPopup" class="project-popup"></div>
+</div>
+
+<footer>
+  © 2026 Kayla Whyte | Engineering Portfolio
+</footer>
+
+<script>
+  const popup = document.getElementById("projectPopup");
+  let activeCard = null;
+
+  function openProject(button) {
+    const card = button.closest('.card');
+    const title = card.querySelector('h3').innerText;
+
+    if (activeCard === card) {
+      popup.style.display = "none";
+      popup.innerHTML = "";
+      button.innerText = "View Project";
+      activeCard = null;
+      return;
+    }
+
+    document.querySelectorAll('.card button').forEach(btn => {
+      btn.innerText = "View Project";
+    });
+
+    activeCard = card;
+    button.innerText = "Close Project";
+
+    popup.innerHTML = `
+      <div class="popup-header">
+        <h2>${title}</h2>
+      </div>
+    `;
+
+    const details = card.querySelector('.project-details').cloneNode(true);
+    details.style.display = "block";
+
+    popup.appendChild(details);
+    popup.style.display = "block";
+
+    popup.scrollIntoView({ behavior: "smooth" });
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  });
+
+  document.querySelectorAll('.fade-section, .card').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
